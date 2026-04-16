@@ -1,81 +1,119 @@
 
-# Password Fortress 🔒
 
-A secure password manager with GUI and CLI interfaces for password strength analysis, generation, and breach checking.
+# 🔐 Password Fortress
 
-## Features 🛡️
+A modern password analysis tool that evaluates password strength, detects breaches, and simulates real-world attack scenarios through an interactive web interface.
 
-- **Real-Time Strength Analysis** with visual feedback
-- **Breach Checking** via HaveIBeenPwned API
-- **Smart Password Generation** with options for:
-  - Random complex passwords
-  - Memorable passphrases
-- **Pattern Detection** for common vulnerabilities:
-  - Sequential numbers
-  - Keyboard patterns
-  - Repeated characters
-- **Cross-Platform Support** (Windows/Linux/macOS)
-- **Clipboard Security** with auto-clear functionality
-- **Batch Processing** for multiple passwords
-- **Export Results** in JSON/CSV formats
+---
 
-## Installation 💻
+## 🚀 Features
 
-### Requirements
-- Python 3.8+
-- Tkinter (usually included with Python)
+* **Real-time password analysis**
+* **Breach detection** using Have I Been Pwned
+* **Strength estimation** powered by zxcvbn
+* **Attack simulation**
+
+  * Estimated guesses
+  * Crack time (fast vs realistic scenarios)
+* **Secure password generator**
+* **Pattern detection**
+
+  * Repeated characters
+  * Sequential numbers
+  * Keyboard patterns
+* **Clipboard support**
+* **Clean dark UI with responsive layout**
+
+---
+
+## 🧱 Tech Stack
+
+* Python (Flask)
+* HTML / CSS / JavaScript
+* zxcvbn
+* Have I Been Pwned
+
+---
+
+## 📦 Installation
 
 ```bash
-# Clone repository
 git clone https://github.com/Sajid1105/Password-Checker-EH.git
 cd Password-Checker-EH
 
-# Install dependencies
-pip install zxcvbn-python requests
-OR 
-python -m pip install requests zxcvbn rich
-
-# For Linux users (if Tkinter missing):
-sudo apt-get install python3-tk
+pip install flask requests zxcvbn-python
 ```
 
-## Usage 🚀
+---
 
-### GUI Mode
+## ▶️ Usage
+
+### Run the web application
+
+```bash
+python app.py
+```
+
+Open in browser:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+### Optional: CLI / Desktop Mode
+
 ```bash
 python password_manager.py
 ```
-- Enter password to analyze in real-time
-- Generate new passwords with one click
-- Toggle password visibility
-- Export analysis reports
 
-### CLI Mode
+---
+
+## ⚙️ How It Works
+
+1. Password is analyzed locally using zxcvbn for strength and entropy.
+2. A SHA-1 hash is generated.
+3. Only the first 5 characters of the hash are sent to the HIBP API (k-anonymity model).
+4. Remaining hash comparison is done locally.
+5. Results include:
+
+   * Strength score
+   * Breach count
+   * Pattern issues
+   * Crack time estimates
+
+---
+
+## 📁 Project Structure
+
 ```bash
-# Check password strength
-python password_manager.py --check "YourPassword123!"
-
-# Generate random password
-python password_manager.py --generate --length 20
-
-# Generate passphrase
-python password_manager.py --generate --passphrase
-
-# Batch process passwords from file
-python password_manager.py --batch passwords.txt --format csv
+.
+├── app.py
+├── password_manager.py
+├── templates/
+│   └── index.html
+├── static/
+│   ├── style.css
+│   └── script.js
 ```
 
-## Security Features 🔐
+---
 
-- SHA-1 hashing with k-anonymity for breach checks
-- SystemSecure random number generation
-- Automatic clipboard clearing (30s timeout)
-- Banned password list filtering
-- Complexity requirements enforcement
+## 🔐 Security Notes
 
-## Dependencies 📦
+* Passwords are never transmitted in full
+* Uses k-anonymity for breach queries
+* No password storage
+* Secure random generation for passwords
 
-- `zxcvbn-python`: Password strength estimation
-- `requests`: API communication
-- `tkinter`: GUI components
+---
 
+## 📌 Future Improvements
+
+* User accounts and encrypted storage
+* Rate limiting for API requests
+* Offline breach dataset support
+* Deployment-ready configuration
+
+---

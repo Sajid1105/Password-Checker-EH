@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Password Analyzer</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+
+            <h1>🔐 Password Analyzer</h1>
+
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Enter password">
+                <button type="button" onclick="toggle()">👁</button>
+            </div>
+
+            <div class="actions">
+                <button type="button" onclick="checkPassword()">Analyze</button>
+                <button type="button" onclick="generatePassword()">Generate</button>
+                <button type="button" onclick="copyPassword()">Copy</button>
+            </div>
+
+            <div id="strength-bar"></div>
+
+            <div id="result"></div>
+
+            <div id="generator-info"></div>
+
+            <div class="tips">
+                <h3>Security Tips</h3>
+                <ul>
+                    <li>✔ Use passphrases instead of short passwords</li>
+                    <li>✔ Avoid reusing passwords</li>
+                    <li>✔ Enable 2FA wherever possible</li>
+                    <li>✔ Do not use personal info in passwords</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+
+</body>
+
+</html>

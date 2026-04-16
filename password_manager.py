@@ -141,6 +141,10 @@ class PasswordStrengthAnalyzer:
         result['strength'] = zxcvbn_result['score']
         result['suggestions'] = zxcvbn_result['feedback']['suggestions']
 
+        result['guesses'] = zxcvbn_result['guesses']
+        result['crack_time_fast'] = zxcvbn_result['crack_times_display']['offline_fast_hashing_1e10_per_second']
+        result['crack_time_slow'] = zxcvbn_result['crack_times_display']['offline_slow_hashing_1e4_per_second']
+
         # Generate complexity suggestions
         if not result['complexity']['upper']:
             result['suggestions'].append("Add uppercase letters")
@@ -273,7 +277,7 @@ class PasswordManagerGUI(tk.Tk):
         self.strength_meter['value'] = (analysis['strength'] + 1) * 20
         self.update_strength_label(analysis)
         self.update_analysis_text(analysis)
-        
+
     def copy_to_clipboard(self, event=None):
         self.clipboard_clear()
         self.clipboard_append(self.password_var.get())
